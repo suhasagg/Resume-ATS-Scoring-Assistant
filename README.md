@@ -1,4 +1,4 @@
-# Resume / ATS Scoring Assistant — Principal+ Reference Architecture
+# Resume / ATS Scoring Assistant — Reference Architecture
 
 Production-oriented hiring decision-support platform using React, Node.js, MongoDB, LangChain-compatible model gateways, OpenAI/GPT and Gemini adapters.
 
@@ -324,9 +324,9 @@ curl -X POST http://localhost:8080/api/score \
  }'
 ```
 
-## Principal/Staff interview discussion
+## Principal+ discussion
 
-Be prepared to explain:
+Explanation of:
 - why the LLM does not own the numeric score;
 - how protected attributes are prevented from entering scoring;
 - how prompt injection can appear inside a resume;
@@ -344,6 +344,6 @@ Be prepared to explain:
 - how to detect extraction drift;
 - how to prevent model/provider outages from corrupting hiring workflows.
 
-## Resume framing
+## Portfolio
 
 > Architected a multi-tenant AI-assisted ATS platform with evidence-grounded resume extraction, deterministic job-rubric scoring, OpenAI/Gemini model routing, prompt-injection defenses, MongoDB lineage/audit storage, recruiter-in-the-loop review, fairness/evaluation controls, React UX and AWS container deployment patterns.
