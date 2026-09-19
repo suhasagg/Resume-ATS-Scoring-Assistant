@@ -1,0 +1,1 @@
+{"name":"ats-api","version":"1.0.0","type":"module","scripts":{"start":"node src/server.js","test":"node --test"},"dependencies":{"@google/generative-ai":"^0.24.1","express":"^5.1.0","mongodb":"^6.15.0","openai":"^4.91.1","zod":"^3.24.2"}}

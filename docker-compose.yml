@@ -1,0 +1,14 @@
+services:
+  mongo:
+    image: mongo:8
+    volumes: ["mongo-data:/data/db"]
+  api:
+    build: {context: ., dockerfile: Dockerfile.api}
+    ports: ["8080:8080"]
+    environment: {MONGO_URL: "mongodb://mongo:27017/ats", LLM_PROVIDER: mock}
+    depends_on: [mongo]
+  web:
+    build: {context: ., dockerfile: Dockerfile.web}
+    ports: ["5173:5173"]
+    depends_on: [api]
+volumes: {mongo-data: {}}

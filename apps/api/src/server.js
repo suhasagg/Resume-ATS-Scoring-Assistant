@@ -1,0 +1,5 @@
+import express from "express"; import crypto from "crypto"; import {extract} from "./providers/index.js"; import {sanitizeResume} from "./sanitize.js"; import {scoreProfile} from "./scoring.js";
+const app=express(); app.use(express.json({limit:"2mb"}));
+app.get("/health",(_,res)=>res.json({status:"ok"}));
+app.post("/api/score",async(req,res)=>{ try{ const {job,resumeText}=req.body||{}; if(!job||!resumeText)return res.status(400).json({error:"job and resumeText required"}); const clean=sanitizeResume(resumeText); const profile=await extract(clean); const result=scoreProfile(profile,job); const scoreRunId=crypto.createHash("sha256").update(JSON.stringify({job,clean,provider:profile.provider,model:profile.model,scoring:"v1"})).digest("hex").slice(0,24); res.json({scoreRunId,profile,result,policy:{automatedDecision:false,protectedAttributesExcluded:true},versions:{scoring:"v1",rubric:"request-v1"}}); }catch(e){res.status(500).json({error:"scoring_failed",detail:String(e.message||e)});} });
+app.listen(Number(process.env.PORT||8080),()=>console.log("ATS API listening"));

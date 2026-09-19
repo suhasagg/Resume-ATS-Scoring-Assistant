@@ -1,0 +1,2 @@
+import test from "node:test"; import assert from "node:assert/strict"; import {scoreProfile} from "../src/scoring.js";
+test("score is reproducible and evidence based",()=>{const j={requiredSkills:["Java","Kafka"],preferredSkills:["AWS"],minimumYears:5};const p={skills:["java","aws"],yearsExperience:5};const a=scoreProfile(p,j),b=scoreProfile(p,j);assert.deepEqual(a,b);assert.equal(a.humanReviewRequired,true);assert.deepEqual(a.notEstablishedRequired,["kafka"]);});
